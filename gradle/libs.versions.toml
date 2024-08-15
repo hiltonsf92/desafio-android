@@ -28,8 +28,10 @@ runner = "1.6.1"
 rxandroid = "2.1.1"
 rxjava = "2.2.17"
 android-application = "8.2.2"
+android-library = "8.2.2"
 kotlin-android = "1.9.25"
 kotlin-plugin-parcelize = "2.0.20-RC2"
+truth = "1.4.4"
 
 [libraries]
 adapter-rxjava2 = { module = "com.squareup.retrofit2:adapter-rxjava2", version.ref = "adapter-rxjava2" }
@@ -62,8 +64,10 @@ runner = { module = "androidx.test:runner", version.ref = "runner" }
 rxandroid = { module = "io.reactivex.rxjava2:rxandroid", version.ref = "rxandroid" }
 rxjava = { module = "io.reactivex.rxjava2:rxjava", version.ref = "rxjava" }
 test-core-ktx = { module = "androidx.test:core-ktx", version.ref = "androidx-core-ktx" }
+truth = { module = "com.google.truth:truth", version.ref = "truth" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-application" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-android" }
 kotlin-plugin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin-plugin-parcelize" }
+android-library = { id = "com.android.library", version.ref = "android-library" }
