@@ -1,7 +1,7 @@
-package com.picpay.desafio.android.domain.features.users.repositories
+package com.picpay.desafio.android.domain.users.repositories
 
 import com.picpay.desafio.android.domain.common.Either
-import com.picpay.desafio.android.domain.features.users.entities.User
+import com.picpay.desafio.android.domain.users.entities.User
 import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {

@@ -6,7 +6,7 @@ import com.picpay.desafio.android.data.users.local.UserLocalDatasource
 import com.picpay.desafio.android.data.users.remote.UserDto
 import com.picpay.desafio.android.data.users.remote.UserRemoteDatasource
 import com.picpay.desafio.android.data.users.remote.toModelList
-import com.picpay.desafio.android.domain.features.users.repositories.UserRepository
+import com.picpay.desafio.android.domain.users.repositories.UserRepository
 import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.test.runTest
 import org.junit.Before

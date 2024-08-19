@@ -1,7 +1,7 @@
 package com.picpay.desafio.android.data.users.local
 
 import com.google.common.truth.Truth.assertThat
-import com.picpay.desafio.android.domain.features.users.entities.User
+import com.picpay.desafio.android.domain.users.entities.User
 import org.junit.Test
 
 class UserModelTest {

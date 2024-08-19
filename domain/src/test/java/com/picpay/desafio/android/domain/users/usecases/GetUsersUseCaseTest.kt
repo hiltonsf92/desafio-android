@@ -1,16 +1,17 @@
-package com.picpay.desafio.android.domain.features.users.usecases
+package com.picpay.desafio.android.domain.users.usecases
 
 import com.google.common.truth.Truth.assertThat
 import com.picpay.desafio.android.domain.common.Either
-import com.picpay.desafio.android.domain.features.users.entities.User
-import com.picpay.desafio.android.domain.features.users.repositories.UserRepository
+import com.picpay.desafio.android.domain.users.entities.User
+import com.picpay.desafio.android.domain.users.repositories.UserRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
-private const val message = "Ocorreu um erro. Tente novamente."
+private const val ERROR_MESSAGE = "Ocorreu um erro. Tente novamente."
 
 private val mockUsers = listOf(
     User(
@@ -35,8 +36,10 @@ private class FakeUserRepository(private val isSuccessful: Boolean = true) : Use
         if (isSuccessful) {
             emit(Either.Right(mockUsers))
         } else {
-            emit(Either.Left(message))
+            emit(Either.Left(ERROR_MESSAGE))
         }
+    }.catch {
+        emit(Either.Left(ERROR_MESSAGE))
     }
 }
 
@@ -46,7 +49,7 @@ class GetUsersUseCaseTest {
     fun getUsersUseCase_ResponseSuccess_ListUsers() = runTest {
         val getUsersUseCase = GetUsersUseCase(FakeUserRepository())
 
-        val result = getUsersUseCase().first()
+        val result = getUsersUseCase().last()
 
         assertThat(result.isRight()).isTrue()
         assertThat(result.getRight()?.size).isEqualTo(mockUsers.size)
@@ -57,10 +60,10 @@ class GetUsersUseCaseTest {
     fun getUsersUseCase_ResponseFailure_Message() = runTest {
         val getUsersUseCase = GetUsersUseCase(FakeUserRepository(isSuccessful = false))
 
-        val result = getUsersUseCase().first()
+        val result = getUsersUseCase().last()
 
         assertThat(result.isLeft()).isTrue()
-        assertThat(result.getLeft()).isEqualTo(message)
+        assertThat(result.getLeft()).isEqualTo(ERROR_MESSAGE)
         assertThat(result.getLeft()).isInstanceOf(String::class.java)
     }
 }

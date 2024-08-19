@@ -1,4 +1,4 @@
-package com.picpay.desafio.android.domain.features.users.entities
+package com.picpay.desafio.android.domain.users.entities
 
 data class User(
     val name: String,

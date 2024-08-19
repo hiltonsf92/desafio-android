@@ -2,7 +2,7 @@ package com.picpay.desafio.android.data.users.local
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.picpay.desafio.android.domain.features.users.entities.User
+import com.picpay.desafio.android.domain.users.entities.User
 
 @Entity(tableName = "users")
 internal data class UserModel(

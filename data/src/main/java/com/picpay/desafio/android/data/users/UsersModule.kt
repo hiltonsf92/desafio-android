@@ -10,7 +10,7 @@ import com.picpay.desafio.android.data.users.remote.UserApi
 import com.picpay.desafio.android.data.users.remote.UserRemoteDatasource
 import com.picpay.desafio.android.data.users.remote.UserRemoteDatasourceImpl
 import com.picpay.desafio.android.data.users.repositories.UserRepositoryImpl
-import com.picpay.desafio.android.domain.features.users.repositories.UserRepository
+import com.picpay.desafio.android.domain.users.repositories.UserRepository
 import org.koin.dsl.module
 import retrofit2.Retrofit
 

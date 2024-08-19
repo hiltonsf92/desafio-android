@@ -1,8 +1,8 @@
-package com.picpay.desafio.android.domain.features.users.usecases
+package com.picpay.desafio.android.domain.users.usecases
 
 import com.picpay.desafio.android.domain.common.Either
-import com.picpay.desafio.android.domain.features.users.entities.User
-import com.picpay.desafio.android.domain.features.users.repositories.UserRepository
+import com.picpay.desafio.android.domain.users.entities.User
+import com.picpay.desafio.android.domain.users.repositories.UserRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
