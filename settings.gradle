@@ -18,3 +18,4 @@ dependencyResolutionManagement {
 rootProject.name = "desafio-android"
 include(":app")
 include(":domain")
+include(":data")
