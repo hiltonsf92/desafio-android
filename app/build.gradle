@@ -40,6 +40,10 @@ android {
 }
 
 dependencies {
+
+    implementation(project(":data"))
+    implementation(project(":domain"))
+
     implementation libs.kotlin.stdlib.jdk7
 
     implementation libs.core.ktx
@@ -51,6 +55,7 @@ dependencies {
 
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
+    implementation(libs.koin.android)
 
     implementation libs.lifecycle.viewmodel.ktx
     implementation libs.lifecycle.livedata.ktx
@@ -58,6 +63,8 @@ dependencies {
 
     implementation libs.kotlinx.coroutines.core
     implementation libs.kotlinx.coroutines.android
+    implementation libs.navigation.fragment.ktx
+    implementation libs.navigation.ui.ktx
     testImplementation libs.kotlinx.coroutines.test
 
     implementation libs.rxjava
@@ -75,10 +82,19 @@ dependencies {
     implementation libs.circleimageview
 
     testImplementation libs.junit
+    testImplementation libs.truth
     testImplementation libs.mockito.core
     testImplementation libs.mockito.kotlin
+    testImplementation(libs.mockito.inline)
     testImplementation libs.core.testing
 
+    androidTestImplementation libs.kotlinx.coroutines.test
+    androidTestImplementation libs.mockito.core
+    androidTestImplementation libs.mockito.inline
+    androidTestImplementation(platform(libs.koin.bom))
+    androidTestImplementation libs.koin.android.test
+    androidTestImplementation libs.koin.test.junit4
+    androidTestImplementation libs.espresso.contrib
     androidTestImplementation libs.runner
     androidTestImplementation libs.espresso.core
     androidTestImplementation libs.test.core.ktx
