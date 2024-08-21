@@ -58,7 +58,7 @@ class UserLocalDatasourceImplTest {
     fun getAll_InsertedAll_ListUsers() = runTest {
         userLocalDatasource.insertAll(mockUsers)
 
-        val users = userLocalDatasource.getAll()
+        val users = userLocalDatasource.getAll()!!
 
         assertThat(users).hasSize(mockUsers.size)
         assertThat(users[0].id).isEqualTo(mockUsers[0].id)

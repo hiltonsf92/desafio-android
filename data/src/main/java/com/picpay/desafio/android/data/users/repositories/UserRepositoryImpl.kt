@@ -3,6 +3,7 @@ package com.picpay.desafio.android.data.users.repositories
 import com.picpay.desafio.android.data.users.local.UserLocalDatasource
 import com.picpay.desafio.android.data.users.local.toEntityList
 import com.picpay.desafio.android.data.users.remote.UserRemoteDatasource
+import com.picpay.desafio.android.data.users.remote.toEntityList
 import com.picpay.desafio.android.data.users.remote.toModelList
 import com.picpay.desafio.android.domain.common.Either
 import com.picpay.desafio.android.domain.users.entities.User
@@ -16,12 +17,17 @@ internal class UserRepositoryImpl(
     private val userLocalDatasource: UserLocalDatasource
 ) : UserRepository {
     override suspend fun findAll(): Flow<Either<List<User>, String>> = flow {
-        val response = userRemoteDatasource.getUsers()
-        if (response != null) {
-            userLocalDatasource.insertAll(response.toModelList())
-            emit(Either.Right(userLocalDatasource.getAll().toEntityList()))
+        val cachedUsers = userLocalDatasource.getAll()
+        if (cachedUsers != null) {
+            emit(Either.Right(cachedUsers.toEntityList()))
         } else {
-            emit(Either.Left("Ocorreu um erro. Tente novamente."))
+            val response = userRemoteDatasource.getUsers()
+            if (response != null) {
+                userLocalDatasource.insertAll(response.toModelList())
+                emit(Either.Right(response.toEntityList()))
+            } else {
+                emit(Either.Left("Ocorreu um erro. Tente novamente."))
+            }
         }
     }.catch {
         emit(Either.Left("Ocorreu um erro. Tente novamente."))

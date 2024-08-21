@@ -1,6 +1,7 @@
 package com.picpay.desafio.android.data.users.remote
 
 import com.picpay.desafio.android.data.users.local.UserModel
+import com.picpay.desafio.android.domain.users.entities.User
 
 internal data class UserDto(
     val id: Int,
@@ -17,3 +18,11 @@ internal fun UserDto.toModel(): UserModel = UserModel(
 )
 
 internal fun List<UserDto>.toModelList(): List<UserModel> = this.map { it.toModel() }.toList()
+
+internal fun UserDto.toEntity(): User = User(
+    name = this.name,
+    image = this.img,
+    username = this.username
+)
+
+internal fun List<UserDto>.toEntityList(): List<User> = this.map { it.toEntity() }.toList()

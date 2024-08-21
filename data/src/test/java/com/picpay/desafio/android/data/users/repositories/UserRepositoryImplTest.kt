@@ -37,10 +37,21 @@ class UserRepositoryImplTest {
     }
 
     @Test
+    fun findAll_ResponseCache_ListUsers() = runTest {
+        val mockUsers = ResourceHelper.loadFile<List<UserDto>>("users.json")
+        `when`(userLocalDatasource.getAll()).thenReturn(mockUsers.toModelList())
+
+        val result = userRepository.findAll().last()
+
+        assertThat(result.isRight()).isTrue()
+        assertThat(result.getRight()).isNotEmpty()
+    }
+
+    @Test
     fun findAll_ResponseSuccess_ListUsers() = runTest {
         val mockUsers = ResourceHelper.loadFile<List<UserDto>>("users.json")
+        `when`(userLocalDatasource.getAll()).thenReturn(null)
         `when`(userRemoteDatasource.getUsers()).thenReturn(mockUsers)
-        `when`(userLocalDatasource.getAll()).thenReturn(mockUsers.toModelList())
 
         val result = userRepository.findAll().last()
 
